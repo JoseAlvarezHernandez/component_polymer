@@ -29,7 +29,8 @@ class User{
           (user)=>{
             user = getDeepValues(user);
             let id = user[user.length - 1];
-            delete user[user.length-1];
+            //delete user[user.length-1];
+            user.shift(id);
             user.unshift(id);
             resolve(user);
           }
