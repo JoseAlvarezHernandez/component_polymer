@@ -1,14 +1,14 @@
 const html = Polymer.html;
 // Define the class for a new element called custom-element
 class tableElement extends Polymer.Element {
-    static get is() { return 'users-table'; }
+    static get is() { return 'items-table'; }
     constructor() {
         super();
     }
 
     static get properties(){
         return {
-            users : {
+            items : {
               type: Array
             },
             headers : {
@@ -19,57 +19,26 @@ class tableElement extends Polymer.Element {
 
     static get template(){
       return html`
-                  <style>
-                    table{
-                      max-width: 100vw;
-                    }
-                    th {
-                      text-align:left !important;
-                      padding: 5px;
-                    }
-                    thead{
-                      background-color: #343a40;
-                      color: #ffffff;
-                      font-size: 17px;
-                      text-transform: uppercase;
-                    }
-                    tr:nth-of-type(even){
-                      background-color: #b9b6b6;
-                      color: #ffffff;
-                    }
-                  </style>
+                  <link rel="stylesheet" href="css/table_component.css" />
+                  <link rel="stylesheet" href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" />
                   <table class="table">
                     <thead>
                       <tr>
                         <template is="dom-repeat" items="{{headers}}">
                           <th>{{item}}</th>
                         </template>
+                          <th>#</th>
                       </tr>
                     </thead>
                     <tbody>
-                  <template is="dom-repeat" items="{{users}}">
+                  <template is="dom-repeat" items="{{items}}">
                     <tr>
                       <template is="dom-repeat" items="{{item}}">
                         <td>{{item}}</td>
                       </template>
+                        <td><span class="glyphicon glyphicon-remove" onclick="javascript:deleteItem(event)"></span></td>
                     </tr>
                   </template></tbody></table>`
-    }
-
-    ready(){
-      super.ready();
-      let user = new User();
-      user.All.then( (users) => {
-        this.users = users.values;
-        this.headers = users.keys;
-      })
-
-      setTimeout( ()=>{
-        let user = new User();
-        user.create(usr).then( (newUser)=>{
-          (this.users).push(newUser);
-        });
-      },3000);
     }
 }
 
