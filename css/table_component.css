@@ -1,0 +1,24 @@
+table{
+  max-width: 100vw;
+}
+th {
+  text-align:left !important;
+  padding: 5px;
+}
+thead{
+  background-color: #343a40;
+  color: #ffffff;
+  font-size: 17px;
+  text-transform: uppercase;
+}
+tr:nth-of-type(even){
+  background-color: #b9b6b6;
+  color: #ffffff;
+}
+.glyphicon-remove{
+  color:red;
+}
+
+.glyphicon{
+  cursor:pointer;
+}
